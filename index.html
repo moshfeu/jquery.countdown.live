@@ -14,7 +14,7 @@ https://stackoverflow.com/a/29669088/863110
   
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,600,300italic">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Oswald">
-  <link rel="stylesheet" href="http://hilios.github.io/jQuery.countdown/css/main.css">
+  <link rel="stylesheet" href="https://hilios.github.io/jQuery.countdown/css/main.css">
   <script src="//code.jquery.com/jquery.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
   <script src="//cdn.rawgit.com/hilios/jQuery.countdown/2.0.4/dist/jquery.countdown.min.js"></script>
@@ -28,8 +28,7 @@ https://stackoverflow.com/a/29669088/863110
       
       <div class="pure-u-1-2">
         <div class="main-example">
-  <p>
-    Next year begins in:
+  <p id="label">
   </p>
   <div class="countdown-container" id="main-example"></div>
 </div>
@@ -45,8 +44,8 @@ https://stackoverflow.com/a/29669088/863110
 <script type="text/javascript">
   $(window).on('load', function() {
     var labels = ['weeks', 'days', 'hours', 'minutes', 'seconds'],
-      //nextYear = (new Date().getFullYear() + 1) + '/01/01',
-      nextYear = '2019/01/04',
+//       nextYear = (new Date().getFullYear() + 1) + '/01/01',
+      nextYear = getParameterByName('date'),
       template = _.template($('#main-example-template').html()),
       currDate = '00:00:00:00:00',
       nextDate = '00:00:00:00:00',
@@ -107,7 +106,18 @@ https://stackoverflow.com/a/29669088/863110
         });
       }
     });
+    
+    $('#label').text(getParameterByName('label'));
   });
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
 </script>
 
       </div>
