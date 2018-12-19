@@ -6,7 +6,7 @@ https://stackoverflow.com/a/29669088/863110
 <!DOCTYPE html>
 <html>
 <head>
-  <title>The Final Countdown</title>
+  <title>The Final Countdown for you</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width">
@@ -54,7 +54,7 @@ https://stackoverflow.com/a/29669088/863110
   $(window).on('load', function() {
     var labels = getParameterByName('labels') ? getParameterByName('date').split(',') : ['weeks', 'days', 'hours', 'minutes', 'seconds'],
 //       nextYear = (new Date().getFullYear() + 1) + '/01/01',
-      nextYear = getParameterByName('date'),
+      nextYear = getParameterByName('date') || (new Date().getFullYear() + 1) + '/01/01',
       template = _.template($('#main-example-template').html()),
       currDate = '00:00:00:00:00',
       nextDate = '00:00:00:00:00',
