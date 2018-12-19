@@ -52,7 +52,7 @@ https://stackoverflow.com/a/29669088/863110
 </script>
 <script type="text/javascript">
   $(window).on('load', function() {
-    var labels = ['weeks', 'days', 'hours', 'minutes', 'seconds'],
+    var labels = getParameterByName('labels') ? getParameterByName('date').split(',') : ['weeks', 'days', 'hours', 'minutes', 'seconds'],
 //       nextYear = (new Date().getFullYear() + 1) + '/01/01',
       nextYear = getParameterByName('date'),
       template = _.template($('#main-example-template').html()),
